@@ -170,6 +170,12 @@
         }
       };
 
+      // IE crashes when calling XMLHttpRequest.open with a null URL
+      if (url === null) {
+        callback('Calling SVGInjector on an elemenent with a null src, please check your selectors');
+        return false;
+      }
+
       httpRequest.open('GET', url);
 
       // Treat and parse the response as XML, even if the
